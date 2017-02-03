@@ -65,7 +65,7 @@ $(function() {
     map = new google.maps.Map(canvas, options);
 
     // configure UI once Google Map is idle (i.e., loaded)
-    google.maps.event.addListenerOnce(map, "idle", configure);
+//    google.maps.event.addListenerOnce(map, "idle", configure);
 
 });
 
@@ -130,13 +130,9 @@ function configure()
 
     // configure typeahead
     // https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md
-    $("#q").typeahead({
-        autoselect: true,
-        highlight: true,
-        minLength: 1
-    },
+    $("#q").typeahead(
     {
-        source: search,
+        source: search(),
         templates: {
             empty: "no places found yet",
             suggestion: _.template("<p><%- place_name %>, <%- admin_name1 %>, <%- postal_code %></p>")
